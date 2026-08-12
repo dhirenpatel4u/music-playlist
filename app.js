@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────────────────────
-   Bus Wala
+   Music Player
    The sound comes from a 1×1px YouTube iframe parked off-screen;
    everything you can see is our own chrome.
    ───────────────────────────────────────────────────────────── */
@@ -25,7 +25,6 @@ const el = {
   list: $('list'),
   listItems: $('listItems'),
   clock: $('clock'),
-  listeners: $('listeners'),
 };
 
 const state = {
@@ -302,28 +301,6 @@ function tickClock() {
 }
 tickClock();
 setInterval(tickClock, 15000);
-
-/* Listener count. A random walk between 500 and 800 that leans back toward
-   the middle, so it drifts the way a real audience would instead of jittering.
-   It is decorative, not measured — the Redis-backed version that counted real
-   sessions is in git history if you ever want it back. */
-(function driftListeners() {
-  const MIN = 500;
-  const MAX = 800;
-  let count = MIN + Math.floor(Math.random() * (MAX - MIN));
-
-  el.listeners.textContent = String(count);
-
-  const step = () => {
-    const midpoint = (MIN + MAX) / 2;
-    const up = Math.random() < (count < midpoint ? 0.58 : 0.42);
-    count = Math.max(MIN, Math.min(MAX, count + (up ? 1 : -1) * (1 + Math.floor(Math.random() * 4))));
-    el.listeners.textContent = String(count);
-    setTimeout(step, 2500 + Math.random() * 3500);
-  };
-
-  setTimeout(step, 2000);
-})();
 
 /* ── YouTube iframe boot ─────────────────────────────────────── */
 
