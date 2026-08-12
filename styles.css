@@ -196,14 +196,10 @@ body {
 /* ── Player dock ────────────────────────────────────────────── */
 
 .dock {
-  position: fixed;
-  left: 50%;
-  bottom: 2.5rem;
-  transform: translateX(-50%);
-  width: min(100% - 2rem, 30rem);
+  position: relative;
+  width: 100%;
   max-width: 30rem;
-  margin: 0;
-  z-index: 10;
+  margin-bottom: clamp(0.5rem, 7vh, 4.5rem);
 }
 
 .player {
