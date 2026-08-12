@@ -84,6 +84,18 @@ function renderTrack() {
   el.title.textContent = t.title;
   el.artist.textContent = t.artist || t.rawTitle || '';
   el.cover.src = t.cover || '';
+   
+   const displayCover = document.getElementById('displayCover');
+   const displayTitle = document.getElementById('displayTitle');
+
+      if (displayCover) {
+        displayCover.src = t.cover || '';
+      }
+
+      if (displayTitle) {
+        displayTitle.textContent = t.title || '';
+      }
+   
   el.cover.alt = `${t.title} artwork`;
   el.cover.classList.toggle('is-letterboxed', (t.cover || '').includes('ytimg.com'));
   if (el.trackBackground) {
