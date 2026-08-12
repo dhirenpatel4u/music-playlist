@@ -196,6 +196,73 @@ body {
 
 /* ── Wordmark ───────────────────────────────────────────────── */
 
+/* Separate artwork above the player */
+.track-display {
+  position: fixed;
+
+  left: 50%;
+  bottom: calc(2.5rem + 90px);
+
+  transform: translateX(-50%);
+
+  width: 150px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  z-index: 20;
+
+  pointer-events: none;
+}
+
+/* Cover box */
+.track-display__cover {
+  width: 150px;
+  height: 150px;
+
+  border-radius: 14px;
+  overflow: hidden;
+
+  background: rgba(0, 0, 0, 0.3);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.5);
+}
+
+.track-display__cover img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+/* Track title below cover */
+.track-display__title {
+  width: 180px;
+
+  margin-top: 8px;
+
+  text-align: center;
+
+  color: #fff;
+
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
 /* ── Player dock ────────────────────────────────────────────── */
 
 .dock {
