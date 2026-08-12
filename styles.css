@@ -197,25 +197,44 @@ body {
 
 .dock {
   position: fixed;
-  left: 50%;
+  left: 0;
+  right: 0;
   bottom: 2.5rem;
-  transform: translateX(-50%);
-  width: min(100% - 2rem, 30rem);
-  max-width: 30rem;
+
+  width: 100%;
   margin: 0;
-  z-index: 10;
+  padding: 0 1rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transform: none;
+  z-index: 100;
+  box-sizing: border-box;
 }
 
 .player {
+  width: min(100%, 30rem);
+  max-width: 30rem;
+
+  margin: 0 auto;
+
   display: flex;
   align-items: center;
-  gap: 0.7rem;
+  justify-content: center;
+
+  box-sizing: border-box;
+
   padding: 0.4rem 0.9rem 0.4rem 0.4rem;
   border-radius: 999px;
+
   border: 1px solid var(--glass-line);
   background: var(--glass);
+
   backdrop-filter: blur(28px) saturate(150%);
   -webkit-backdrop-filter: blur(28px) saturate(150%);
+
   box-shadow: var(--shadow-glass);
 }
 
@@ -593,16 +612,23 @@ body {
 /* ── Small screens ──────────────────────────────────────────── */
 
 @media (max-width: 640px) {
-  .player {
-    flex-wrap: wrap;
-    padding: 0.75rem;
-    border-radius: 1.5rem;
-    row-gap: 0.6rem;
-  }
-   
   .dock {
+    left: 0;
+    right: 0;
     bottom: 1rem;
-    width: calc(100% - 1rem);
+
+    width: 100%;
+    padding: 0 0.75rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .player {
+    width: 100%;
+    max-width: 30rem;
+    margin: 0 auto;
   }
 
   .controls {
