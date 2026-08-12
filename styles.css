@@ -263,6 +263,10 @@ body {
     0 2px 8px rgba(0, 0, 0, 0.8);
 }
 
+.track-display__cover.is-hidden {
+  display: none;
+}
+
 /* ── Player dock ────────────────────────────────────────────── */
 
 .dock {
