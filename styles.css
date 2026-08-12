@@ -612,14 +612,19 @@ body {
 /* ── Small screens ──────────────────────────────────────────── */
 
 @media (max-width: 640px) {
+
+  /* ─────────────────────────────────────
+     Player position
+     ───────────────────────────────────── */
+
   .dock {
     position: fixed;
     left: 0;
     right: 0;
-    bottom: 1rem;
+    bottom: 12px;
 
     width: 100%;
-    padding: 0 0.5rem;
+    padding: 0 8px;
 
     display: flex;
     justify-content: center;
@@ -629,68 +634,215 @@ body {
     z-index: 100;
   }
 
+
+  /* ─────────────────────────────────────
+     Player
+     ───────────────────────────────────── */
+
   .player {
     width: 100%;
-    max-width: none;
-    height: 86px;
+    max-width: 430px;
+    min-height: 88px;
 
     margin: 0;
-    padding: 0.35rem 0.7rem 0.35rem 0.35rem;
+    padding: 8px;
 
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
+
+    gap: 9px;
 
     box-sizing: border-box;
     overflow: hidden;
   }
 
-  /* Album / track cover */
-  .player .cover,
-  .player img {
-    flex: 0 0 58px;
+
+  /* ─────────────────────────────────────
+     Album artwork
+     ───────────────────────────────────── */
+
+  .disc {
     width: 58px;
     height: 58px;
-    object-fit: cover;
-    border-radius: 50%;
+
+    min-width: 58px;
+    flex: 0 0 58px;
   }
 
-  /* Track information */
-  .player .track-info {
-    min-width: 0;
+  .disc__ring {
+    width: 58px;
+    height: 58px;
+  }
+
+  .disc__art {
+    width: 58px;
+    height: 58px;
+
+    object-fit: cover;
+  }
+
+
+  /* ─────────────────────────────────────
+     Track information
+     ───────────────────────────────────── */
+
+  .meta {
     flex: 1 1 auto;
-    margin-left: 0.6rem;
+
+    min-width: 0;
+    width: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
     overflow: hidden;
   }
 
-  /* Time/progress area */
-  .player .time,
-  .player .progress-time {
+
+  /* Track title */
+
+  .meta__title {
+    display: block;
+
+    width: 100%;
+    min-width: 0;
+
+    margin: 0 0 1px;
+
+    font-size: 13px;
+    line-height: 17px;
+
     white-space: nowrap;
-    flex-shrink: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  /* Controls */
-  .player .controls {
+
+  /* Artist */
+
+  .meta__artist {
+    display: block;
+
+    width: 100%;
+    min-width: 0;
+
+    margin: 0 0 5px;
+
+    font-size: 10px;
+    line-height: 13px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+
+  /* ─────────────────────────────────────
+     Progress bar
+     ───────────────────────────────────── */
+
+  .seek {
+    width: 100%;
+    height: 5px;
+
+    min-height: 5px;
+
+    margin: 0;
+
+    position: relative;
+    cursor: pointer;
+  }
+
+  .seek__rail {
+    width: 100%;
+    height: 3px;
+
+    position: absolute;
+    left: 0;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border-radius: 999px;
+  }
+
+  .seek__fill {
+    height: 100%;
+    transform-origin: left center;
+  }
+
+  .seek__knob {
+    width: 7px;
+    height: 7px;
+  }
+
+
+  /* ─────────────────────────────────────
+     Time
+     ───────────────────────────────────── */
+
+  .time {
+    display: block;
+
+    width: 100%;
+
+    margin-top: 2px;
+
+    font-size: 9px;
+    line-height: 11px;
+
+    white-space: nowrap;
+  }
+
+
+  /* ─────────────────────────────────────
+     Controls
+     ───────────────────────────────────── */
+
+  .controls {
     flex: 0 0 auto;
+
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 0.45rem;
+
+    gap: 2px;
+
+    white-space: nowrap;
   }
 
-  .player button {
+  .controls .btn {
+    flex: 0 0 auto;
+
+    width: 30px;
+    height: 30px;
+
+    padding: 0;
+  }
+
+  .controls .btn--play {
+    width: 42px;
+    height: 42px;
+  }
+
+  .controls svg {
     flex-shrink: 0;
   }
-  .controls {
-    width: 100%;
-    justify-content: center;
-    gap: 0.35rem;
+
+
+  /* ─────────────────────────────────────
+     Don't allow player children to wrap
+     ───────────────────────────────────── */
+
+  .player > * {
+    flex-shrink: 0;
   }
 
-  .disc {
-    width: 3.75rem;
-    height: 3.75rem;
+  .player .meta {
+    flex-shrink: 1;
   }
 }
 
