@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>Bus Wala — Indian bus driver songs | Horn OK Please</title>
+    <title>Music Player</title>
     <meta
       name="description"
-      content="Non-stop 90s Bollywood highway bangers — the songs that blast out of Indian buses. Kumar Sanu, Altaf Raja, Udit Narayan. Press play. Horn OK Please."
+      content="Music player with full-screen track artwork and playlist controls."
     />
     <meta name="theme-color" content="#0a4a50" />
 
@@ -14,12 +14,12 @@
          add og:url + canonical with your domain — link previews drop
          relative ones. -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Bus Wala" />
+    <meta property="og:site_name" content="Music Player" />
     <meta property="og:locale" content="en_IN" />
-    <meta property="og:title" content="Bus Wala" />
+    <meta property="og:title" content="Music Player" />
     <meta
       property="og:description"
-      content="Highway bangers off the back of an Indian bus."
+      content="Music player with full-screen track artwork."
     />
     <meta property="og:image" content="assets/opengraph.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
@@ -27,19 +27,19 @@
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="Bus Wala — highway bangers off the back of an Indian bus."
+      content="Music Player with full-screen track artwork."
     />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Bus Wala" />
+    <meta name="twitter:title" content="Music Player" />
     <meta
       name="twitter:description"
-      content="Highway bangers off the back of an Indian bus."
+      content="Music player with full-screen track artwork."
     />
     <meta name="twitter:image" content="assets/opengraph.jpg" />
     <meta
       name="twitter:image:alt"
-      content="Bus Wala — highway bangers off the back of an Indian bus."
+      content="Music Player with full-screen track artwork."
     />
 
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
@@ -57,16 +57,16 @@
           {
             "@type": "WebSite",
             "url": "./",
-            "name": "Bus Wala",
-            "alternateName": "Horn OK Please",
-            "description": "Non-stop 90s Bollywood highway bangers — the songs that blast out of Indian buses.",
+            "name": "Music Player",
+            "alternateName": "Music Player",
+            "description": "A simple music player with full-screen track artwork.",
             "inLanguage": ["en", "hi"]
           },
           {
             "@type": "MusicPlaylist",
-            "name": "Bus Wala",
+            "name": "Music Player",
             "url": "./",
-            "description": "The songs that blast out of Indian buses — 90s Bollywood, Punjabi and Bhojpuri highway bangers.",
+            "description": "A music playlist with full-screen track artwork.",
             "numTracks": 52
           }
         ]
@@ -77,8 +77,7 @@
 
   <body>
     <div class="bg" aria-hidden="true">
-      <div class="bg__layer bg__layer--1"></div>
-      <div class="bg__layer bg__layer--2"></div>
+      <div class="bg__layer" id="trackBackground"></div>
       <div class="bg__scrim"></div>
     </div>
 
@@ -95,7 +94,7 @@
       <div class="presence" aria-live="polite">
         <span class="presence__dot" aria-hidden="true"></span>
         <span class="presence__count" id="listeners">42</span>
-        <span class="presence__label">on the highway</span>
+        <span class="presence__label">listening</span>
         <!-- Hidden until the first real count lands; see trackPresence(). -->
       </div>
 
@@ -117,58 +116,14 @@
         </a>
       </nav>
     </header>
-
-    <!-- ── Horn ──────────────────────────────────────────────────── -->
-    <aside class="horns">
-      <button class="horn" id="horn" type="button" aria-label="Sound the horn">
-        <span class="horn__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-            <path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3z" />
-            <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-              <path d="M15.4 8.4a5.2 5.2 0 010 7.2" />
-              <path d="M18.2 5.6a9.2 9.2 0 010 12.8" />
-            </g>
-          </svg>
-        </span>
-        <span class="horn__text">
-          <span class="horn__deva" lang="hi">हॉर्न ओके प्लीज़</span>
-          <span class="horn__en">Horn ok pleaseeee</span>
-        </span>
-      </button>
-    </aside>
-
-    <main>
-      <!-- ── Wordmark, painted onto the scene ──────────────────── -->
-      <h1 class="logo" lang="hi">
-        <span class="logo__line">बस</span>
-        <span class="logo__line">वाला</span>
-        <!-- The wordmark is Devanagari only; this gives crawlers and screen
-             readers the Latin name without changing the design. -->
-        <span class="sr-only" lang="en">Bus Wala — Horn OK Please</span>
-      </h1>
-
-      <!-- ── Player ────────────────────────────────────────────── -->
+<main>
+<!-- ── Player ────────────────────────────────────────────── -->
       <div class="dock">
         <!-- Playlist pops up over the art -->
         <section class="list" id="list" aria-label="Playlist">
           <ol id="listItems"></ol>
         </section>
-
-        <!-- The button lives inside the paragraph so it flows after the last
-             word — a sibling would sit at the edge of the text box, which a
-             balanced two-line couplet leaves far from the visible text. -->
-        <p class="bumper">
-          <span class="bumper__text" id="bumperText" lang="hi" aria-live="polite"
-            >बुरी नज़र वाले तेरा मुँह काला</span
-          ><button class="bumper__next" id="bumperNext" type="button" aria-label="Another line">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M20 11.5A8 8 0 106.3 17.7" />
-              <path d="M20 5.5v6h-6" />
-            </svg>
-          </button>
-        </p>
-
-        <section class="player" id="player" aria-label="Player">
+<section class="player" id="player" aria-label="Player">
           <div class="disc" id="disc">
             <div class="disc__ring">
               <img id="cover" class="disc__art" alt="" src="" />
