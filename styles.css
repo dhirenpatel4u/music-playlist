@@ -914,6 +914,20 @@ body {
   .player .meta {
     flex-shrink: 1;
   }
+  .track-display {
+    bottom: calc(1rem + 90px);
+  }
+
+  .track-display__cover {
+    width: 110px;
+    height: 110px;
+  }
+
+  .track-display__title {
+    width: 150px;
+    font-size: 12px;
+    line-height: 16px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
