@@ -74,6 +74,33 @@ body {
   overflow: hidden;
 }
 
+/* Full-screen artwork background */
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+  background: #0a1416;
+}
+
+.bg__layer {
+  position: absolute;
+  inset: -6%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(0px);
+  transform: scale(1.02);
+  transition: background-image 350ms ease, opacity 350ms ease;
+  opacity: 1;
+}
+
+.bg__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.34) 0%, rgba(0,0,0,.16) 38%, rgba(0,0,0,.62) 100%);
+}
+
 /* ── Entrance ───────────────────────────────────────────────
    Everything rises into place once, slightly staggered, instead of
    snapping in as the CSS parses. */
@@ -545,10 +572,6 @@ body {
 /* ── Small screens ──────────────────────────────────────────── */
 
 @media (max-width: 640px) {
-  .presence__label {
-    display: none;
-  }
-
   .player {
     flex-wrap: wrap;
     padding: 0.75rem;
@@ -580,8 +603,7 @@ body {
     scroll-behavior: auto !important;
   }
 
-  .disc__ring,
-  .presence__dot::after {
+  .disc__ring {
     animation: none !important;
   }
 
