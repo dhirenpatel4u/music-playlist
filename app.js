@@ -89,7 +89,21 @@ function renderTrack() {
    const displayTitle = document.getElementById('displayTitle');
 
       if (displayCover) {
+        displayCover.classList.remove('is-hidden');
+
+        displayCover.onload = () => {
+          displayCover.classList.remove('is-hidden');
+        };
+
+        displayCover.onerror = () => {
+          displayCover.classList.add('is-hidden');
+        };
+
         displayCover.src = t.cover || '';
+
+        if (!t.cover) {
+          displayCover.classList.add('is-hidden');
+        }
       }
 
       if (displayTitle) {
