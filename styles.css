@@ -613,24 +613,76 @@ body {
 
 @media (max-width: 640px) {
   .dock {
+    position: fixed;
     left: 0;
     right: 0;
     bottom: 1rem;
 
     width: 100%;
-    padding: 0 0.75rem;
+    padding: 0 0.5rem;
 
     display: flex;
     justify-content: center;
     align-items: center;
+
+    box-sizing: border-box;
+    z-index: 100;
   }
 
   .player {
     width: 100%;
-    max-width: 30rem;
-    margin: 0 auto;
+    max-width: none;
+    height: 86px;
+
+    margin: 0;
+    padding: 0.35rem 0.7rem 0.35rem 0.35rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    box-sizing: border-box;
+    overflow: hidden;
   }
 
+  /* Album / track cover */
+  .player .cover,
+  .player img {
+    flex: 0 0 58px;
+    width: 58px;
+    height: 58px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  /* Track information */
+  .player .track-info {
+    min-width: 0;
+    flex: 1 1 auto;
+    margin-left: 0.6rem;
+    overflow: hidden;
+  }
+
+  /* Time/progress area */
+  .player .time,
+  .player .progress-time {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Controls */
+  .player .controls {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+  }
+
+  .player button {
+    flex-shrink: 0;
+  }
+   
   .controls {
     width: 100%;
     justify-content: center;
