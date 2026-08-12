@@ -89,20 +89,24 @@ function renderTrack() {
    const displayTitle = document.getElementById('displayTitle');
 
       if (displayCover) {
-        displayCover.classList.remove('is-hidden');
+        const coverBox = displayCover.parentElement;
+
+        // Hide before attempting to load
+        coverBox.classList.remove('is-loaded');
 
         displayCover.onload = () => {
-          displayCover.classList.remove('is-hidden');
+          coverBox.classList.add('is-loaded');
         };
 
         displayCover.onerror = () => {
-          displayCover.classList.add('is-hidden');
+          coverBox.classList.remove('is-loaded');
         };
 
-        displayCover.src = t.cover || '';
+        // Clear old image first
+        displayCover.removeAttribute('src');
 
-        if (!t.cover) {
-          displayCover.classList.add('is-hidden');
+        if (t.cover) {
+          displayCover.src = t.cover;
         }
       }
 
