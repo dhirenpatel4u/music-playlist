@@ -85,13 +85,16 @@ body {
 
 .bg__layer {
   position: absolute;
-  inset: 0;
-  background-position: center center;
+  inset: -30px;
+
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  transform: none;
-  transition: background-image 350ms ease, opacity 350ms ease;
-  opacity: 1;
+
+  filter: blur(25px);
+  transform: scale(1.08);
+
+  transition: background-image 500ms ease;
 }
 
 .bg__scrim {
