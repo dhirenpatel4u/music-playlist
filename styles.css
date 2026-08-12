@@ -196,68 +196,6 @@ body {
 
 /* ── Wordmark ───────────────────────────────────────────────── */
 
-/* Cover box over the top edge of player */
-.player {
-  position: relative;
-  overflow: visible !important;
-}
-
-.player .disc {
-  position: absolute;
-  left: 50%;
-  top: 0;
-
-  width: 120px;
-  height: 120px;
-
-  transform: translate(-50%, -50%);
-
-  z-index: 10;
-}
-
-.player .disc__ring {
-  width: 100%;
-  height: 100%;
-
-  overflow: hidden;
-  border-radius: 14px;
-
-  background: rgba(0, 0, 0, 0.35);
-
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.5),
-    0 0 0 2px rgba(255, 255, 255, 0.15);
-}
-
-.player .disc__art {
-  width: 100%;
-  height: 100%;
-
-  display: block;
-
-  object-fit: cover;
-}
-
-/* Hide the old disc center */
-.player .disc__hub {
-  display: none;
-}
-
-/* Move title below the cover */
-.player .meta {
-  padding-top: 58px;
-  text-align: center;
-}
-
-.player .meta__title {
-  text-align: center;
-}
-
-/* Artist below title */
-.player .meta__artist {
-  text-align: center;
-}
-
 /* ── Player dock ────────────────────────────────────────────── */
 
 .dock {
