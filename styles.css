@@ -263,8 +263,33 @@ body {
     0 2px 8px rgba(0, 0, 0, 0.8);
 }
 
-.track-display__cover.is-hidden {
+/* ─── */
+
+.track-display__cover {
+  width: 150px;
+  height: 150px;
+
+  border-radius: 14px;
+  overflow: hidden;
+
+  background: rgba(0, 0, 0, 0.3);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+
   display: none;
+}
+
+.track-display__cover.is-loaded {
+  display: block;
+}
+
+.track-display__cover img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 /* ── Player dock ────────────────────────────────────────────── */
