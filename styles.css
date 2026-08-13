@@ -712,6 +712,29 @@ body {
   text-overflow: ellipsis;
 }
 
+.track-display__developer {
+  margin-bottom: 12px;
+
+  font-family: "Yatra One", "Baloo 2", cursive;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center;
+
+  color: rgba(255, 255, 255, 0.95);
+
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.8),
+    0 0 18px rgba(255, 255, 255, 0.25);
+
+  white-space: nowrap;
+}
+
+.track-display__developer span {
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 800;
+}
+
 /* ── Small screens ──────────────────────────────────────────── */
 
 @media (max-width: 640px) {
