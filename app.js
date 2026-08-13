@@ -408,7 +408,7 @@ window.onYouTubeIframeAPIReady = () => {
     // https://music-playlist-x.vercel.app/?id=PLAYLIST_ID
 
     const params = new URLSearchParams(window.location.search);
-    const playlistId = params.get('id');
+    const playlistId = params.get('id') || 'PLU0BnC4JozmrFAUN0BWeElyNKqJM0II9T';
 
     if (!playlistId) {
       el.title.textContent = 'Playlist ID missing';
