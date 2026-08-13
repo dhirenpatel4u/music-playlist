@@ -777,10 +777,13 @@ body {
   .disc__art {
     width: 58px;
     height: 58px;
-
+    display: none;
     object-fit: cover;
   }
-
+   
+   .disc__art.is-loaded {
+     display: block;
+   }
 
   /* ─────────────────────────────────────
      Track information
