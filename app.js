@@ -388,27 +388,56 @@ window.onYouTubeIframeAPIReady = () => {
 
 (async function init() {
   try {
-    const res = await fetch('tracks.json');
-    state.tracks = await res.json();
-  } catch {
-    el.title.textContent = 'Could not load the playlist';
-    el.artist.textContent = 'Check tracks.json';
+    // Get playlist ID from:
+    // https://music-playlist-x.vercel.app/?id=PLAYLIST_ID
+
+    const params = new URLSearchParams(window.location.search);
+    const playlistId = params.get('id');
+
+    if (!playlistId) {
+      el.title.textContent = 'Playlist ID missing';
+      el.artist.textContent = 'Add ?id=PLAYLIST_ID to the URL';
+      return;
+    }
+
+    // Fetch playlist JSON from API
+    const apiUrl =
+      `https://youtube-playlist-api-six.vercel.app/?id=${encodeURIComponent(playlistId)}`;
+
+    const res = await fetch(apiUrl);
+
+    if (!res.ok) {
+      throw new Error(`API returned ${res.status}`);
+    }
+
+    const data = await res.json();
+
+    if (!Array.isArray(data)) {
+      throw new Error('API response is not an array');
+    }
+
+    state.tracks = data;
+
+  } catch (err) {
+    console.error('Playlist loading error:', err);
+
+    el.title.textContent = 'Could not load playlist';
+    el.artist.textContent = 'Check the playlist ID or API';
     return;
   }
 
   if (!state.tracks.length) {
-    el.title.textContent = 'No tracks yet';
-    el.artist.textContent = 'Run: node scripts/build-tracks.mjs';
+    el.title.textContent = 'No tracks found';
+    el.artist.textContent = 'This playlist is empty';
     return;
   }
 
   state.order = buildOrder();
+
   renderList();
   renderTrack();
-  // Always open on layer 1. A random opener would pull both images on half of
-  // all loads, which costs more than the variety is worth — the rotation on
-  // track change gives you that anyway.
 
+  // Load YouTube IFrame API
   const s = document.createElement('script');
   s.src = 'https://www.youtube.com/iframe_api';
   document.head.append(s);
