@@ -83,7 +83,24 @@ function renderTrack() {
 
   el.title.textContent = t.title;
   el.artist.textContent = t.artist || t.rawTitle || '';
-  el.cover.src = t.cover || '';
+
+   // Disc cover — hide until image successfully loads
+el.cover.classList.remove('is-loaded');
+el.cover.removeAttribute('src');
+
+el.cover.onload = () => {
+  el.cover.classList.add('is-loaded');
+};
+
+el.cover.onerror = () => {
+  el.cover.classList.remove('is-loaded');
+};
+
+el.cover.alt = `${t.title} artwork`;
+
+if (t.cover) {
+  el.cover.src = t.cover;
+}
    
    const displayCover = document.getElementById('displayCover');
    const displayTitle = document.getElementById('displayTitle');
@@ -114,7 +131,6 @@ function renderTrack() {
         displayTitle.textContent = t.title || '';
       }
    
-  el.cover.alt = `${t.title} artwork`;
   el.cover.classList.toggle('is-letterboxed', (t.cover || '').includes('ytimg.com'));
   if (el.trackBackground) {
     el.trackBackground.style.backgroundImage = t.cover ? `url("${t.cover.replace(/"/g, '\\"')}")` : 'none';
