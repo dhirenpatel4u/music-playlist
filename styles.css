@@ -725,14 +725,14 @@ body {
   letter-spacing: 1px;
 
   color: #fff;
+  white-space: nowrap;
+
+  z-index: 9999;
+  pointer-events: none;
 
   text-shadow:
     0 2px 8px rgba(0, 0, 0, 0.8),
     0 0 18px rgba(255, 255, 255, 0.25);
-
-  white-space: nowrap;
-
-  z-index: 999;
 }
 
 .track-display__developer span {
