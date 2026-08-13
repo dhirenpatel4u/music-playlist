@@ -173,6 +173,7 @@ body {
   justify-self: end;
   display: flex;
   align-items: center;
+  pointer-events: auto;
 }
 
 .link {
