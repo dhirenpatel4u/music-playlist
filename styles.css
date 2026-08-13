@@ -725,7 +725,6 @@ body {
   letter-spacing: 1px;
 
   color: #fff;
-  white-space: nowrap;
 
   z-index: 9999;
   pointer-events: none;
